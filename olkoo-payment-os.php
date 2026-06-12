@@ -27,6 +27,9 @@ define('OLKOO_PAYMENT_OS_PLUGIN_DIR', plugin_dir_path(__FILE__));
 define('OLKOO_PAYMENT_OS_PLUGIN_URL', plugin_dir_url(__FILE__));
 define('OLKOO_PAYMENT_OS_PLUGIN_BASENAME', plugin_basename(__FILE__));
 
+require_once OLKOO_PAYMENT_OS_PLUGIN_DIR . 'includes/class-olkoo-payment-updater.php';
+new Olkoo_Payment_OS_Updater();
+
 /**
  * Main plugin class
  */
