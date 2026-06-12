@@ -127,15 +127,6 @@ abstract class Abstract_Olkoo_Payment_Gateway extends WC_Payment_Gateway impleme
     abstract protected function get_gateway_form_fields();
 
     /**
-     * Process payment
-     * Must be implemented by child classes
-     *
-     * @param int $order_id
-     * @return array
-     */
-    abstract public function process_payment($order_id);
-
-    /**
      * Process webhook
      * Must be implemented by child classes
      *

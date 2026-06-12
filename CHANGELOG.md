@@ -21,6 +21,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Fixed
 - Fatal load-order bug: the gateway interface is now required before the abstract class that implements it
+- Fatal gateway inheritance bug: removed the abstract `process_payment()` redeclaration that conflicts with WooCommerce's concrete `WC_Payment_Gateway::process_payment()` method
 
 ## [1.1.0] - 2025-01-20
 
