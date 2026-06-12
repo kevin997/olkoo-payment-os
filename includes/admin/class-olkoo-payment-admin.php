@@ -4,16 +4,16 @@
  *
  * Handles admin functionality for the plugin
  *
- * @package OlkuPaymentOS
+ * @package OlkooPaymentOS
  * @since 1.0.0
  */
 
 defined('ABSPATH') || exit;
 
 /**
- * Class Olku_Payment_Admin
+ * Class Olkoo_Payment_Admin
  */
-class Olku_Payment_Admin {
+class Olkoo_Payment_Admin {
     /**
      * Constructor
      */
@@ -30,40 +30,40 @@ class Olku_Payment_Admin {
      * @return array
      */
     public function add_global_settings($settings) {
-        $olku_settings = array(
+        $olkoo_settings = array(
             array(
-                'title' => __('Olku Payment OS Settings', 'olku-payment-os'),
+                'title' => __('Olkoo Payment OS Settings', 'olkoo-payment-os'),
                 'type' => 'title',
-                'desc' => __('Global settings for Olku Payment OS plugin', 'olku-payment-os'),
-                'id' => 'olku_payment_os_settings',
+                'desc' => __('Global settings for Olkoo Payment OS plugin', 'olkoo-payment-os'),
+                'id' => 'olkoo_payment_os_settings',
             ),
             array(
-                'title' => __('Enable Logging', 'olku-payment-os'),
-                'desc' => __('Enable detailed logging for payment gateway operations', 'olku-payment-os'),
-                'id' => 'olku_payment_os_enable_logging',
+                'title' => __('Enable Logging', 'olkoo-payment-os'),
+                'desc' => __('Enable detailed logging for payment gateway operations', 'olkoo-payment-os'),
+                'id' => 'olkoo_payment_os_enable_logging',
                 'default' => 'yes',
                 'type' => 'checkbox',
             ),
             array(
-                'title' => __('Log Level', 'olku-payment-os'),
-                'desc' => __('Select the level of detail for logs', 'olku-payment-os'),
-                'id' => 'olku_payment_os_log_level',
+                'title' => __('Log Level', 'olkoo-payment-os'),
+                'desc' => __('Select the level of detail for logs', 'olkoo-payment-os'),
+                'id' => 'olkoo_payment_os_log_level',
                 'default' => 'info',
                 'type' => 'select',
                 'options' => array(
-                    'debug' => __('Debug (Most Detailed)', 'olku-payment-os'),
-                    'info' => __('Info (Recommended)', 'olku-payment-os'),
-                    'warning' => __('Warning', 'olku-payment-os'),
-                    'error' => __('Error (Least Detailed)', 'olku-payment-os'),
+                    'debug' => __('Debug (Most Detailed)', 'olkoo-payment-os'),
+                    'info' => __('Info (Recommended)', 'olkoo-payment-os'),
+                    'warning' => __('Warning', 'olkoo-payment-os'),
+                    'error' => __('Error (Least Detailed)', 'olkoo-payment-os'),
                 ),
             ),
             array(
                 'type' => 'sectionend',
-                'id' => 'olku_payment_os_settings',
+                'id' => 'olkoo_payment_os_settings',
             ),
         );
 
-        return array_merge($settings, $olku_settings);
+        return array_merge($settings, $olkoo_settings);
     }
 
     /**
@@ -78,23 +78,23 @@ class Olku_Payment_Admin {
         }
 
         wp_enqueue_style(
-            'olku-payment-os-admin',
-            OLKU_PAYMENT_OS_PLUGIN_URL . 'assets/css/admin.css',
+            'olkoo-payment-os-admin',
+            OLKOO_PAYMENT_OS_PLUGIN_URL . 'assets/css/admin.css',
             array(),
-            OLKU_PAYMENT_OS_VERSION
+            OLKOO_PAYMENT_OS_VERSION
         );
 
         wp_enqueue_script(
-            'olku-payment-os-admin',
-            OLKU_PAYMENT_OS_PLUGIN_URL . 'assets/js/admin.js',
+            'olkoo-payment-os-admin',
+            OLKOO_PAYMENT_OS_PLUGIN_URL . 'assets/js/admin.js',
             array('jquery'),
-            OLKU_PAYMENT_OS_VERSION,
+            OLKOO_PAYMENT_OS_VERSION,
             true
         );
 
-        wp_localize_script('olku-payment-os-admin', 'olkuPaymentOS', array(
+        wp_localize_script('olkoo-payment-os-admin', 'olkooPaymentOS', array(
             'ajaxUrl' => admin_url('admin-ajax.php'),
-            'nonce' => wp_create_nonce('olku_payment_os_admin'),
+            'nonce' => wp_create_nonce('olkoo_payment_os_admin'),
         ));
     }
 
@@ -110,7 +110,7 @@ class Olku_Payment_Admin {
                     <?php
                     echo sprintf(
                         /* translators: %s: WooCommerce plugin link */
-                        esc_html__('Olku Payment OS requires WooCommerce to be installed and active. You can download %s here.', 'olku-payment-os'),
+                        esc_html__('Olkoo Payment OS requires WooCommerce to be installed and active. You can download %s here.', 'olkoo-payment-os'),
                         '<a href="https://wordpress.org/plugins/woocommerce/" target="_blank">WooCommerce</a>'
                     );
                     ?>
@@ -122,20 +122,20 @@ class Olku_Payment_Admin {
 
         // Check if any gateway is configured
         $gateways = WC()->payment_gateways()->payment_gateways();
-        $olku_gateways = array();
+        $olkoo_gateways = array();
 
         foreach ($gateways as $gateway) {
-            if ($gateway instanceof Abstract_Olku_Payment_Gateway) {
-                $olku_gateways[] = $gateway;
+            if ($gateway instanceof Abstract_Olkoo_Payment_Gateway) {
+                $olkoo_gateways[] = $gateway;
             }
         }
 
-        if (empty($olku_gateways)) {
+        if (empty($olkoo_gateways)) {
             return;
         }
 
         $configured_count = 0;
-        foreach ($olku_gateways as $gateway) {
+        foreach ($olkoo_gateways as $gateway) {
             if ($gateway->enabled === 'yes') {
                 $configured_count++;
             }
@@ -148,8 +148,8 @@ class Olku_Payment_Admin {
                     <?php
                     echo sprintf(
                         /* translators: %s: Settings page link */
-                        esc_html__('Olku Payment OS is installed but no payment gateways are enabled. %s', 'olku-payment-os'),
-                        '<a href="' . admin_url('admin.php?page=wc-settings&tab=checkout') . '">' . esc_html__('Configure payment gateways', 'olku-payment-os') . '</a>'
+                        esc_html__('Olkoo Payment OS is installed but no payment gateways are enabled. %s', 'olkoo-payment-os'),
+                        '<a href="' . admin_url('admin.php?page=wc-settings&tab=checkout') . '">' . esc_html__('Configure payment gateways', 'olkoo-payment-os') . '</a>'
                     );
                     ?>
                 </p>
@@ -160,4 +160,4 @@ class Olku_Payment_Admin {
 }
 
 // Initialize admin
-new Olku_Payment_Admin();
+new Olkoo_Payment_Admin();

@@ -21,7 +21,7 @@ When you push a version tag to GitHub, the release workflow automatically:
 Update version in these files:
 
 ```bash
-# 1. olku-payment-os.php (header and constant)
+# 1. olkoo-payment-os.php (header and constant)
 # 2. README.md (badge)
 # 3. CHANGELOG.md (add new version section)
 ```
@@ -51,14 +51,14 @@ GitHub Actions will automatically:
 - Create the release
 - Attach the ZIP file
 
-Check progress at: `https://github.com/YOUR_USERNAME/olku-payment-os/actions`
+Check progress at: `https://github.com/YOUR_USERNAME/olkoo-payment-os/actions`
 
 ### Step 5: Verify Release
 
-Visit: `https://github.com/YOUR_USERNAME/olku-payment-os/releases`
+Visit: `https://github.com/YOUR_USERNAME/olkoo-payment-os/releases`
 
 The new release should be published with:
-- ✅ Release title: "Olku Payment OS v1.0.1"
+- ✅ Release title: "Olkoo Payment OS v1.0.1"
 - ✅ Description from CHANGELOG
 - ✅ Attached ZIP file
 - ✅ Downloadable artifact
@@ -116,7 +116,7 @@ git push origin v1.0.1
 
 ```bash
 # Add new gateway
-git add includes/gateways/class-olku-gateway-stripe.php
+git add includes/gateways/class-olkoo-gateway-stripe.php
 git commit -m "Add Stripe gateway support"
 
 # Update version to 1.1.0
@@ -156,7 +156,7 @@ git push origin v2.0.0
 gh run list
 
 # Or visit GitHub web interface
-# https://github.com/YOUR_USERNAME/olku-payment-os/actions
+# https://github.com/YOUR_USERNAME/olkoo-payment-os/actions
 ```
 
 ### View Workflow Logs
@@ -200,8 +200,8 @@ If automation fails, you can still create release manually:
 # Upload to GitHub releases manually
 # Or use GitHub CLI:
 gh release create v1.0.1 \
-  releases/olku-payment-os-1.0.1.zip \
-  --title "Olku Payment OS v1.0.1" \
+  releases/olkoo-payment-os-1.0.1.zip \
+  --title "Olkoo Payment OS v1.0.1" \
   --notes-file CHANGELOG.md
 ```
 

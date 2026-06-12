@@ -29,11 +29,11 @@ jobs:
         id: release_notes
         run: |
           cat > release_notes.md << 'EOF'
-          # 🎉 Olku Payment OS v${{ steps.get_version.outputs.VERSION }}
+          # 🎉 Olkoo Payment OS v${{ steps.get_version.outputs.VERSION }}
 
           ## 📦 Installation
 
-          1. Download `olku-payment-os-${{ steps.get_version.outputs.VERSION }}.zip` below
+          1. Download `olkoo-payment-os-${{ steps.get_version.outputs.VERSION }}.zip` below
           2. WordPress Admin → Plugins → Add New → Upload Plugin
           3. Upload and activate
           4. Configure in WooCommerce → Settings → Payments
@@ -60,9 +60,9 @@ jobs:
       - name: Create GitHub Release
         uses: softprops/action-gh-release@v1
         with:
-          name: Olku Payment OS v${{ steps.get_version.outputs.VERSION }}
+          name: Olkoo Payment OS v${{ steps.get_version.outputs.VERSION }}
           body_path: release_notes.md
-          files: releases/olku-payment-os-${{ steps.get_version.outputs.VERSION }}.zip
+          files: releases/olkoo-payment-os-${{ steps.get_version.outputs.VERSION }}.zip
           draft: false
           prerelease: false
         env:
@@ -71,6 +71,6 @@ jobs:
       - name: Upload ZIP as artifact
         uses: actions/upload-artifact@v4
         with:
-          name: olku-payment-os-${{ steps.get_version.outputs.VERSION }}
-          path: releases/olku-payment-os-${{ steps.get_version.outputs.VERSION }}.zip
+          name: olkoo-payment-os-${{ steps.get_version.outputs.VERSION }}
+          path: releases/olkoo-payment-os-${{ steps.get_version.outputs.VERSION }}.zip
           retention-days: 90

@@ -27,12 +27,12 @@ jobs:
       - name: Verify ZIP contents
         run: |
           echo "Checking ZIP file structure..."
-          unzip -l releases/olku-payment-os-test.zip
+          unzip -l releases/olkoo-payment-os-test.zip
 
           echo -e "\nVerifying required files..."
-          unzip -l releases/olku-payment-os-test.zip | grep -q "olku-payment-os.php" && echo "✓ Main plugin file found"
-          unzip -l releases/olku-payment-os-test.zip | grep -q "README.md" && echo "✓ README found"
-          unzip -l releases/olku-payment-os-test.zip | grep -q "LICENSE" && echo "✓ LICENSE found"
+          unzip -l releases/olkoo-payment-os-test.zip | grep -q "olkoo-payment-os.php" && echo "✓ Main plugin file found"
+          unzip -l releases/olkoo-payment-os-test.zip | grep -q "README.md" && echo "✓ README found"
+          unzip -l releases/olkoo-payment-os-test.zip | grep -q "LICENSE" && echo "✓ LICENSE found"
 
           echo -e "\nBuild test successful!"
 
@@ -40,5 +40,5 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: test-build
-          path: releases/olku-payment-os-test.zip
+          path: releases/olkoo-payment-os-test.zip
           retention-days: 7

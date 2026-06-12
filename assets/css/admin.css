@@ -1,11 +1,11 @@
 /**
- * Admin Styles for Olku Payment OS
+ * Admin Styles for Olkoo Payment OS
  *
- * @package OlkuPaymentOS
+ * @package OlkooPaymentOS
  * @since 1.0.0
  */
 
-.olku-payment-os-settings {
+.olkoo-payment-os-settings {
     padding: 20px;
     background: #fff;
     border: 1px solid #ccd0d4;
@@ -13,20 +13,20 @@
     margin-top: 20px;
 }
 
-.olku-payment-os-settings h2 {
+.olkoo-payment-os-settings h2 {
     margin-top: 0;
     padding-bottom: 10px;
     border-bottom: 1px solid #eee;
 }
 
-.olku-webhook-url {
+.olkoo-webhook-url {
     background: #f8f9fa;
     padding: 15px;
     border-radius: 4px;
     margin: 15px 0;
 }
 
-.olku-webhook-url code {
+.olkoo-webhook-url code {
     display: block;
     background: #fff;
     padding: 10px;
@@ -36,7 +36,7 @@
     font-size: 13px;
 }
 
-.olku-payment-status {
+.olkoo-payment-status {
     display: inline-block;
     padding: 4px 8px;
     border-radius: 3px;
@@ -44,28 +44,28 @@
     font-weight: 600;
 }
 
-.olku-payment-status.success {
+.olkoo-payment-status.success {
     background: #d4edda;
     color: #155724;
 }
 
-.olku-payment-status.pending {
+.olkoo-payment-status.pending {
     background: #fff3cd;
     color: #856404;
 }
 
-.olku-payment-status.failed {
+.olkoo-payment-status.failed {
     background: #f8d7da;
     color: #721c24;
 }
 
-.olku-gateway-info {
+.olkoo-gateway-info {
     background: #e7f3ff;
     border-left: 4px solid #2271b1;
     padding: 12px;
     margin: 15px 0;
 }
 
-.olku-gateway-info p {
+.olkoo-gateway-info p {
     margin: 0;
 }

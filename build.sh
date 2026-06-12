@@ -1,6 +1,6 @@
 #!/bin/bash
 #
-# Build script for Olku Payment OS
+# Build script for Olkoo Payment OS
 # Creates a distributable WordPress plugin ZIP file
 #
 # Usage: ./build.sh [version]
@@ -16,14 +16,14 @@ YELLOW='\033[1;33m'
 NC='\033[0m' # No Color
 
 # Plugin details
-PLUGIN_SLUG="olku-payment-os"
+PLUGIN_SLUG="olkoo-payment-os"
 VERSION=${1:-"1.0.0"}
 BUILD_DIR="build"
 RELEASE_DIR="releases"
 TEMP_DIR="${BUILD_DIR}/${PLUGIN_SLUG}"
 
 echo -e "${GREEN}========================================${NC}"
-echo -e "${GREEN}Building Olku Payment OS v${VERSION}${NC}"
+echo -e "${GREEN}Building Olkoo Payment OS v${VERSION}${NC}"
 echo -e "${GREEN}========================================${NC}"
 
 # Clean previous builds
@@ -42,7 +42,7 @@ echo -e "${YELLOW}→ Copying plugin files...${NC}"
 
 # Copy PHP files
 cp -r includes ${TEMP_DIR}/
-cp olku-payment-os.php ${TEMP_DIR}/
+cp olkoo-payment-os.php ${TEMP_DIR}/
 
 # Copy assets
 cp -r assets ${TEMP_DIR}/

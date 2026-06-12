@@ -1,4 +1,4 @@
-# Olku Payment OS - Distribution Summary
+# Olkoo Payment OS - Distribution Summary
 
 ## ✅ Ready for Distribution
 
@@ -30,7 +30,7 @@ Your plugin is now fully prepared for distribution with automated releases!
 - ✅ Test build workflow
 
 #### Distribution Files
-- ✅ olku-payment-os-1.0.0.zip (ready to install)
+- ✅ olkoo-payment-os-1.0.0.zip (ready to install)
 - ✅ Located in `releases/` directory
 - ✅ Size: 33KB
 - ✅ All documentation included
@@ -39,7 +39,7 @@ Your plugin is now fully prepared for distribution with automated releases!
 
 ### Method 1: Direct Download (Current)
 
-**Location**: `/home/atlas/Projects/Olku/olku-payment-os/releases/olku-payment-os-1.0.0.zip`
+**Location**: `/home/atlas/Projects/Olkoo/olkoo-payment-os/releases/olkoo-payment-os-1.0.0.zip`
 
 Users can:
 1. Download ZIP file
@@ -52,11 +52,11 @@ Users can:
 
 ```bash
 # 1. Create GitHub repository
-gh repo create olku-payment-os --public --source=. --remote=origin
+gh repo create olkoo-payment-os --public --source=. --remote=origin
 
 # 2. Push code
 git add .
-git commit -m "Initial commit - Olku Payment OS v1.0.0"
+git commit -m "Initial commit - Olkoo Payment OS v1.0.0"
 git push -u origin main
 
 # 3. Create and push tag
@@ -84,10 +84,10 @@ Upload to your hosting:
 
 ```bash
 # Upload to server
-scp releases/olku-payment-os-1.0.0.zip user@server:/var/www/downloads/
+scp releases/olkoo-payment-os-1.0.0.zip user@server:/var/www/downloads/
 
 # Share direct link
-https://okenlysolutions.com/downloads/olku-payment-os-1.0.0.zip
+https://okenlysolutions.com/downloads/olkoo-payment-os-1.0.0.zip
 ```
 
 ## 📋 Pre-Release Checklist
@@ -116,7 +116,7 @@ git add .
 git commit -m "Add new feature"
 
 # 2. Update version in:
-#    - olku-payment-os.php
+#    - olkoo-payment-os.php
 #    - README.md
 #    - CHANGELOG.md
 
@@ -166,7 +166,7 @@ git push origin v1.0.1
 ### Quick Setup
 
 ```bash
-cd /home/atlas/Projects/Olku/olku-payment-os
+cd /home/atlas/Projects/Olkoo/olkoo-payment-os
 
 # Initialize git (if not done)
 git init
@@ -175,15 +175,15 @@ git init
 git add .
 
 # Initial commit
-git commit -m "Initial release of Olku Payment OS v1.0.0"
+git commit -m "Initial release of Olkoo Payment OS v1.0.0"
 
 # Create GitHub repo (replace YOUR_USERNAME)
-gh repo create YOUR_USERNAME/olku-payment-os --public --source=. --push
+gh repo create YOUR_USERNAME/olkoo-payment-os --public --source=. --push
 
 # Or manually:
 # 1. Create repo on github.com
 # 2. Add remote
-git remote add origin https://github.com/YOUR_USERNAME/olku-payment-os.git
+git remote add origin https://github.com/YOUR_USERNAME/olkoo-payment-os.git
 
 # 3. Push
 git branch -M main
@@ -249,7 +249,7 @@ Once on GitHub, you can track:
 ### Sample Announcement
 
 ```markdown
-🎉 Announcing Olku Payment OS v1.0.0!
+🎉 Announcing Olkoo Payment OS v1.0.0!
 
 Extensible WooCommerce payment gateway plugin with TaraMoney integration.
 
@@ -260,7 +260,7 @@ Features:
 ✅ Clean architecture
 ✅ Free & Open Source
 
-Download: https://github.com/YOUR_USERNAME/olku-payment-os/releases
+Download: https://github.com/YOUR_USERNAME/olkoo-payment-os/releases
 
 #WordPress #WooCommerce #TaraMoney #OpenSource
 ```
@@ -320,7 +320,7 @@ Track these after release:
 
 ```
 releases/
-└── olku-payment-os-1.0.0.zip ← Ready to install!
+└── olkoo-payment-os-1.0.0.zip ← Ready to install!
 ```
 
 **Contents verified**:
@@ -349,13 +349,13 @@ Your plugin is **production-ready** and can be distributed via:
 
 ```bash
 # Option 1: Share ZIP directly
-# File is ready at: releases/olku-payment-os-1.0.0.zip
+# File is ready at: releases/olkoo-payment-os-1.0.0.zip
 
 # Option 2: Publish to GitHub (Recommended)
 # Follow GITHUB_RELEASE_GUIDE.md
 
 # Option 3: Upload to your website
-# scp releases/olku-payment-os-1.0.0.zip user@server:/downloads/
+# scp releases/olkoo-payment-os-1.0.0.zip user@server:/downloads/
 ```
 
 ---

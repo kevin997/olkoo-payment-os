@@ -1,12 +1,12 @@
-# Olku Payment OS - Quick Start Guide
+# Olkoo Payment OS - Quick Start Guide
 
-Get up and running with Olku Payment OS in 5 minutes!
+Get up and running with Olkoo Payment OS in 5 minutes!
 
 ## 📦 Installation
 
 ### Step 1: Install Plugin
 
-Upload `olku-payment-os` folder to `/wp-content/plugins/` and activate in WordPress.
+Upload `olkoo-payment-os` folder to `/wp-content/plugins/` and activate in WordPress.
 
 ### Step 2: Get TaraMoney Credentials
 
@@ -49,7 +49,7 @@ Upload `olku-payment-os` folder to `/wp-content/plugins/` and activate in WordPr
 
 Your webhook URL will be:
 ```
-https://yourdomain.com/?wc-api=olku_webhook_taramoney
+https://yourdomain.com/?wc-api=olkoo_webhook_taramoney
 ```
 
 Add this to TaraMoney dashboard for automatic payment confirmations.
@@ -80,4 +80,4 @@ Add this to TaraMoney dashboard for automatic payment confirmations.
 
 ---
 
-**Happy selling with Olku Payment OS! 💰**
+**Happy selling with Olkoo Payment OS! 💰**

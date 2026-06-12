@@ -1,8 +1,8 @@
-# Olku Payment OS - Project Summary
+# Olkoo Payment OS - Project Summary
 
 ## Overview
 
-**Olku Payment OS** is a production-ready, extensible WooCommerce payment gateway plugin developed with enterprise-grade architecture. The plugin provides a robust framework for integrating multiple payment providers, with TaraMoney as the first fully implemented gateway.
+**Olkoo Payment OS** is a production-ready, extensible WooCommerce payment gateway plugin developed with enterprise-grade architecture. The plugin provides a robust framework for integrating multiple payment providers, with TaraMoney as the first fully implemented gateway.
 
 ## Development Completed
 
@@ -15,16 +15,16 @@
    - Proper hooks and filters integration
 
 2. **Abstract Layer**
-   - `Olku_Payment_Gateway_Interface` - Contract definition
-   - `Abstract_Olku_Payment_Gateway` - Base implementation
+   - `Olkoo_Payment_Gateway_Interface` - Contract definition
+   - `Abstract_Olkoo_Payment_Gateway` - Base implementation
    - Common functionality for all gateways
    - Template method pattern implementation
 
 3. **Utility Classes**
-   - `Olku_Payment_Logger` - Comprehensive logging system
-   - `Olku_Payment_API_Client` - HTTP client with error handling
-   - `Olku_Payment_Gateway_Factory` - Gateway instantiation
-   - `Olku_Payment_Webhook_Handler` - Centralized webhook processing
+   - `Olkoo_Payment_Logger` - Comprehensive logging system
+   - `Olkoo_Payment_API_Client` - HTTP client with error handling
+   - `Olkoo_Payment_Gateway_Factory` - Gateway instantiation
+   - `Olkoo_Payment_Webhook_Handler` - Centralized webhook processing
 
 ### ✅ TaraMoney Gateway (100%)
 
@@ -123,8 +123,8 @@
 ## File Structure
 
 ```
-olku-payment-os/
-├── olku-payment-os.php                          # Main plugin file
+olkoo-payment-os/
+├── olkoo-payment-os.php                          # Main plugin file
 ├── README.md                                     # Documentation
 ├── INSTALLATION.md                               # Setup guide
 ├── EXTENDING.md                                  # Developer guide
@@ -134,21 +134,21 @@ olku-payment-os/
 │
 ├── includes/
 │   ├── interfaces/
-│   │   └── interface-olku-payment-gateway.php   # Gateway contract
+│   │   └── interface-olkoo-payment-gateway.php   # Gateway contract
 │   │
 │   ├── abstracts/
-│   │   └── abstract-olku-payment-gateway.php    # Base gateway class
+│   │   └── abstract-olkoo-payment-gateway.php    # Base gateway class
 │   │
 │   ├── gateways/
-│   │   └── class-olku-gateway-taramoney.php     # TaraMoney implementation
+│   │   └── class-olkoo-gateway-taramoney.php     # TaraMoney implementation
 │   │
 │   ├── admin/
-│   │   └── class-olku-payment-admin.php         # Admin interface
+│   │   └── class-olkoo-payment-admin.php         # Admin interface
 │   │
-│   ├── class-olku-payment-logger.php            # Logging system
-│   ├── class-olku-payment-api-client.php        # HTTP client
-│   ├── class-olku-payment-gateway-factory.php   # Gateway factory
-│   └── class-olku-payment-webhook-handler.php   # Webhook handler
+│   ├── class-olkoo-payment-logger.php            # Logging system
+│   ├── class-olkoo-payment-api-client.php        # HTTP client
+│   ├── class-olkoo-payment-gateway-factory.php   # Gateway factory
+│   └── class-olkoo-payment-webhook-handler.php   # Webhook handler
 │
 └── assets/
     ├── css/
@@ -190,7 +190,7 @@ olku-payment-os/
 
 The plugin is designed for easy extension. To add a new gateway:
 
-1. Create new class extending `Abstract_Olku_Payment_Gateway`
+1. Create new class extending `Abstract_Olkoo_Payment_Gateway`
 2. Implement required methods:
    - `process_payment()`
    - `process_webhook()`
@@ -272,7 +272,7 @@ The framework supports:
 
 ## Repository Information
 
-**Suggested Repository**: `https://github.com/okenlysolutions/olku-payment-os`
+**Suggested Repository**: `https://github.com/okenlysolutions/olkoo-payment-os`
 
 **Tags**:
 - woocommerce-payment-gateway
@@ -292,7 +292,7 @@ The framework supports:
 
 ## Conclusion
 
-**Olku Payment OS v1.0.0** is production-ready with TaraMoney integration fully implemented. The extensible architecture allows for easy addition of new payment gateways. The plugin follows WordPress and WooCommerce best practices, includes comprehensive documentation, and provides a solid foundation for payment processing in WooCommerce stores.
+**Olkoo Payment OS v1.0.0** is production-ready with TaraMoney integration fully implemented. The extensible architecture allows for easy addition of new payment gateways. The plugin follows WordPress and WooCommerce best practices, includes comprehensive documentation, and provides a solid foundation for payment processing in WooCommerce stores.
 
 **Status**: ✅ Ready for testing and deployment
 

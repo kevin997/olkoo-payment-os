@@ -4,16 +4,16 @@
  *
  * Handles logging for payment gateway operations
  *
- * @package OlkuPaymentOS
+ * @package OlkooPaymentOS
  * @since 1.0.0
  */
 
 defined('ABSPATH') || exit;
 
 /**
- * Class Olku_Payment_Logger
+ * Class Olkoo_Payment_Logger
  */
-class Olku_Payment_Logger {
+class Olkoo_Payment_Logger {
     /**
      * Gateway ID for logging context
      *
@@ -107,7 +107,7 @@ class Olku_Payment_Logger {
         }
 
         $this->logger->log($level, $log_entry, array(
-            'source' => 'olku-payment-os-' . $this->gateway_id,
+            'source' => 'olkoo-payment-os-' . $this->gateway_id,
         ));
     }
 }

@@ -1,14 +1,14 @@
-# Extending Olku Payment OS
+# Extending Olkoo Payment OS
 
-This guide explains how to extend Olku Payment OS to add support for new payment gateways.
+This guide explains how to extend Olkoo Payment OS to add support for new payment gateways.
 
 ## Architecture Overview
 
-Olku Payment OS uses an extensible architecture with:
+Olkoo Payment OS uses an extensible architecture with:
 
-- **Interface**: `Olku_Payment_Gateway_Interface` - Defines the contract
-- **Abstract Class**: `Abstract_Olku_Payment_Gateway` - Provides common functionality
-- **Factory**: `Olku_Payment_Gateway_Factory` - Creates gateway instances
+- **Interface**: `Olkoo_Payment_Gateway_Interface` - Defines the contract
+- **Abstract Class**: `Abstract_Olkoo_Payment_Gateway` - Provides common functionality
+- **Factory**: `Olkoo_Payment_Gateway_Factory` - Creates gateway instances
 - **Utilities**: Logger and API client for common operations
 
 ## Creating a Custom Gateway
@@ -22,12 +22,12 @@ Create a new file in `includes/gateways/`:
 /**
  * Custom Payment Gateway
  *
- * @package OlkuPaymentOS
+ * @package OlkooPaymentOS
  */
 
 defined('ABSPATH') || exit;
 
-class Olku_Gateway_Custom extends Abstract_Olku_Payment_Gateway {
+class Olkoo_Gateway_Custom extends Abstract_Olkoo_Payment_Gateway {
 
     /**
      * Constructor
@@ -35,10 +35,10 @@ class Olku_Gateway_Custom extends Abstract_Olku_Payment_Gateway {
     public function __construct() {
         // Gateway identification
         $this->id = 'custom_gateway';
-        $this->icon = OLKU_PAYMENT_OS_PLUGIN_URL . 'assets/images/custom-logo.png';
+        $this->icon = OLKOO_PAYMENT_OS_PLUGIN_URL . 'assets/images/custom-logo.png';
         $this->has_fields = false; // Set true if you need custom checkout fields
-        $this->method_title = __('Custom Gateway', 'olku-payment-os');
-        $this->method_description = __('Accept payments via Custom Gateway', 'olku-payment-os');
+        $this->method_title = __('Custom Gateway', 'olkoo-payment-os');
+        $this->method_description = __('Accept payments via Custom Gateway', 'olkoo-payment-os');
 
         // Supported features
         $this->supports = array(
@@ -59,7 +59,7 @@ class Olku_Gateway_Custom extends Abstract_Olku_Payment_Gateway {
             : $this->get_option('secret_key');
 
         // Initialize API client
-        $this->api_client = new Olku_Payment_API_Client(
+        $this->api_client = new Olkoo_Payment_API_Client(
             'https://api.customgateway.com',
             array(
                 'Authorization' => 'Bearer ' . $this->api_key,
@@ -77,43 +77,43 @@ class Olku_Gateway_Custom extends Abstract_Olku_Payment_Gateway {
     protected function get_gateway_form_fields() {
         return array(
             'api_credentials' => array(
-                'title' => __('API Credentials', 'olku-payment-os'),
+                'title' => __('API Credentials', 'olkoo-payment-os'),
                 'type' => 'title',
-                'description' => __('Enter your Custom Gateway API credentials', 'olku-payment-os'),
+                'description' => __('Enter your Custom Gateway API credentials', 'olkoo-payment-os'),
             ),
             'api_key' => array(
-                'title' => __('Live API Key', 'olku-payment-os'),
+                'title' => __('Live API Key', 'olkoo-payment-os'),
                 'type' => 'text',
-                'description' => __('Your production API key', 'olku-payment-os'),
+                'description' => __('Your production API key', 'olkoo-payment-os'),
                 'default' => '',
                 'desc_tip' => true,
             ),
             'secret_key' => array(
-                'title' => __('Live Secret Key', 'olku-payment-os'),
+                'title' => __('Live Secret Key', 'olkoo-payment-os'),
                 'type' => 'password',
-                'description' => __('Your production secret key', 'olku-payment-os'),
+                'description' => __('Your production secret key', 'olkoo-payment-os'),
                 'default' => '',
                 'desc_tip' => true,
             ),
             'test_api_key' => array(
-                'title' => __('Test API Key', 'olku-payment-os'),
+                'title' => __('Test API Key', 'olkoo-payment-os'),
                 'type' => 'text',
-                'description' => __('Your sandbox API key', 'olku-payment-os'),
+                'description' => __('Your sandbox API key', 'olkoo-payment-os'),
                 'default' => '',
                 'desc_tip' => true,
             ),
             'test_secret_key' => array(
-                'title' => __('Test Secret Key', 'olku-payment-os'),
+                'title' => __('Test Secret Key', 'olkoo-payment-os'),
                 'type' => 'password',
-                'description' => __('Your sandbox secret key', 'olku-payment-os'),
+                'description' => __('Your sandbox secret key', 'olkoo-payment-os'),
                 'default' => '',
                 'desc_tip' => true,
             ),
             'webhook_url' => array(
-                'title' => __('Webhook URL', 'olku-payment-os'),
+                'title' => __('Webhook URL', 'olkoo-payment-os'),
                 'type' => 'title',
                 'description' => sprintf(
-                    __('Configure this URL in your gateway dashboard: %s', 'olku-payment-os'),
+                    __('Configure this URL in your gateway dashboard: %s', 'olkoo-payment-os'),
                     '<br><code>' . $this->get_webhook_url() . '</code>'
                 ),
             ),
@@ -132,7 +132,7 @@ class Olku_Gateway_Custom extends Abstract_Olku_Payment_Gateway {
         if (!$order) {
             return array(
                 'result' => 'error',
-                'message' => __('Invalid order', 'olku-payment-os'),
+                'message' => __('Invalid order', 'olkoo-payment-os'),
             );
         }
 
@@ -143,7 +143,7 @@ class Olku_Gateway_Custom extends Abstract_Olku_Payment_Gateway {
             'amount' => $order->get_total(),
             'currency' => $order->get_currency(),
             'order_id' => $order->get_id(),
-            'description' => sprintf(__('Order #%s', 'olku-payment-os'), $order->get_order_number()),
+            'description' => sprintf(__('Order #%s', 'olkoo-payment-os'), $order->get_order_number()),
             'customer' => array(
                 'name' => $order->get_billing_first_name() . ' ' . $order->get_billing_last_name(),
                 'email' => $order->get_billing_email(),
@@ -161,7 +161,7 @@ class Olku_Gateway_Custom extends Abstract_Olku_Payment_Gateway {
                 'error' => $response->get_error_message(),
             ));
 
-            wc_add_notice(__('Payment initialization failed. Please try again.', 'olku-payment-os'), 'error');
+            wc_add_notice(__('Payment initialization failed. Please try again.', 'olkoo-payment-os'), 'error');
 
             return array(
                 'result' => 'error',
@@ -173,7 +173,7 @@ class Olku_Gateway_Custom extends Abstract_Olku_Payment_Gateway {
 
         // Check if payment was successful
         if (!isset($data['payment_url'])) {
-            $error_message = $data['error'] ?? __('Failed to create payment', 'olku-payment-os');
+            $error_message = $data['error'] ?? __('Failed to create payment', 'olkoo-payment-os');
             $this->log_error('Payment creation failed', array('response' => $data));
 
             wc_add_notice($error_message, 'error');
@@ -190,7 +190,7 @@ class Olku_Gateway_Custom extends Abstract_Olku_Payment_Gateway {
         $order->save();
 
         // Mark order as pending
-        $order->update_status('pending', __('Awaiting payment', 'olku-payment-os'));
+        $order->update_status('pending', __('Awaiting payment', 'olkoo-payment-os'));
 
         $this->log_info('Payment created successfully', array(
             'order_id' => $order->get_id(),
@@ -241,7 +241,7 @@ class Olku_Gateway_Custom extends Abstract_Olku_Payment_Gateway {
                 break;
 
             case 'pending':
-                $order->add_order_note(__('Payment is pending', 'olku-payment-os'));
+                $order->add_order_note(__('Payment is pending', 'olkoo-payment-os'));
                 break;
 
             default:
@@ -266,7 +266,7 @@ class Olku_Gateway_Custom extends Abstract_Olku_Payment_Gateway {
         $transaction_id = $data['transaction_id'] ?? $data['payment_id'];
 
         $order->add_order_note(
-            sprintf(__('Payment completed. Transaction ID: %s', 'olku-payment-os'), $transaction_id)
+            sprintf(__('Payment completed. Transaction ID: %s', 'olkoo-payment-os'), $transaction_id)
         );
 
         $this->mark_order_as_processing($order, $transaction_id);
@@ -285,7 +285,7 @@ class Olku_Gateway_Custom extends Abstract_Olku_Payment_Gateway {
      */
     private function process_failed_payment($order, $data) {
         $reason = $data['failure_reason'] ?? 'Payment failed';
-        $message = sprintf(__('Payment failed: %s', 'olku-payment-os'), $reason);
+        $message = sprintf(__('Payment failed: %s', 'olkoo-payment-os'), $reason);
 
         $this->mark_order_as_failed($order, $message);
 
@@ -307,13 +307,13 @@ class Olku_Gateway_Custom extends Abstract_Olku_Payment_Gateway {
         $order = wc_get_order($order_id);
 
         if (!$order) {
-            return new WP_Error('invalid_order', __('Invalid order', 'olku-payment-os'));
+            return new WP_Error('invalid_order', __('Invalid order', 'olkoo-payment-os'));
         }
 
         $payment_id = $order->get_meta('_custom_gateway_payment_id');
 
         if (empty($payment_id)) {
-            return new WP_Error('no_payment_id', __('Payment ID not found', 'olku-payment-os'));
+            return new WP_Error('no_payment_id', __('Payment ID not found', 'olkoo-payment-os'));
         }
 
         $this->log_info('Processing refund', array(
@@ -338,11 +338,11 @@ class Olku_Gateway_Custom extends Abstract_Olku_Payment_Gateway {
         $data = $response['data'];
 
         if (!isset($data['refund_id'])) {
-            return new WP_Error('refund_failed', __('Refund request failed', 'olku-payment-os'));
+            return new WP_Error('refund_failed', __('Refund request failed', 'olkoo-payment-os'));
         }
 
         $order->add_order_note(
-            sprintf(__('Refund processed. Refund ID: %s', 'olku-payment-os'), $data['refund_id'])
+            sprintf(__('Refund processed. Refund ID: %s', 'olkoo-payment-os'), $data['refund_id'])
         );
 
         $this->log_info('Refund processed successfully', array(
@@ -380,11 +380,11 @@ In your plugin file or a separate initialization file:
 
 ```php
 // Register with factory
-Olku_Payment_Gateway_Factory::register_gateway('custom_gateway', 'Olku_Gateway_Custom');
+Olkoo_Payment_Gateway_Factory::register_gateway('custom_gateway', 'Olkoo_Gateway_Custom');
 
 // Add to gateway list
-add_filter('olku_payment_os_gateways', function($gateways) {
-    $gateways[] = 'Olku_Gateway_Custom';
+add_filter('olkoo_payment_os_gateways', function($gateways) {
+    $gateways[] = 'Olkoo_Gateway_Custom';
     return $gateways;
 });
 ```
@@ -394,7 +394,7 @@ add_filter('olku_payment_os_gateways', function($gateways) {
 In the main plugin file's `includes()` method:
 
 ```php
-require_once OLKU_PAYMENT_OS_PLUGIN_DIR . 'includes/gateways/class-olku-gateway-custom.php';
+require_once OLKOO_PAYMENT_OS_PLUGIN_DIR . 'includes/gateways/class-olkoo-gateway-custom.php';
 ```
 
 ## Advanced Features
@@ -416,7 +416,7 @@ public function payment_fields() {
     ?>
     <fieldset>
         <p class="form-row form-row-wide">
-            <label for="custom_field"><?php _e('Custom Field', 'olku-payment-os'); ?></label>
+            <label for="custom_field"><?php _e('Custom Field', 'olkoo-payment-os'); ?></label>
             <input type="text" name="custom_field" id="custom_field" />
         </p>
     </fieldset>
@@ -425,7 +425,7 @@ public function payment_fields() {
 
 public function validate_fields() {
     if (empty($_POST['custom_field'])) {
-        wc_add_notice(__('Custom field is required', 'olku-payment-os'), 'error');
+        wc_add_notice(__('Custom field is required', 'olkoo-payment-os'), 'error');
         return false;
     }
     return true;
@@ -463,7 +463,7 @@ public function verify_payment($transaction_id, $order) {
 Register a custom webhook endpoint:
 
 ```php
-add_action('olku_payment_os_register_webhooks', function($webhook_handler) {
+add_action('olkoo_payment_os_register_webhooks', function($webhook_handler) {
     $webhook_handler->register_webhook_handler('custom_gateway', array($this, 'handle_custom_webhook'));
 });
 
@@ -479,9 +479,9 @@ public function handle_custom_webhook() {
 Create tests for your gateway:
 
 ```php
-class Test_Olku_Gateway_Custom extends WP_UnitTestCase {
+class Test_Olkoo_Gateway_Custom extends WP_UnitTestCase {
     public function test_gateway_initialization() {
-        $gateway = new Olku_Gateway_Custom();
+        $gateway = new Olkoo_Gateway_Custom();
         $this->assertEquals('custom_gateway', $gateway->id);
     }
 

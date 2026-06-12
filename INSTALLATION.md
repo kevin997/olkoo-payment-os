@@ -1,6 +1,6 @@
-# Olku Payment OS - Installation Guide
+# Olkoo Payment OS - Installation Guide
 
-This guide will walk you through installing and configuring the Olku Payment OS plugin for WooCommerce.
+This guide will walk you through installing and configuring the Olkoo Payment OS plugin for WooCommerce.
 
 ## Prerequisites
 
@@ -27,16 +27,16 @@ Before installing, ensure your system meets these requirements:
 
 1. Download and extract the plugin zip file
 2. Connect to your server via FTP
-3. Upload the `olku-payment-os` folder to `/wp-content/plugins/`
+3. Upload the `olkoo-payment-os` folder to `/wp-content/plugins/`
 4. Log in to WordPress admin
 5. Navigate to **Plugins**
-6. Find **Olku Payment OS** and click **Activate**
+6. Find **Olkoo Payment OS** and click **Activate**
 
 ### Method 3: Git Clone (For Developers)
 
 ```bash
 cd /path/to/wordpress/wp-content/plugins/
-git clone https://github.com/okenlysolutions/olku-payment-os.git
+git clone https://github.com/okenlysolutions/olkoo-payment-os.git
 ```
 
 Then activate via WordPress admin → Plugins.
@@ -109,7 +109,7 @@ Choose which payment methods to enable:
 The webhook URL is displayed in the settings:
 
 ```
-https://yourdomain.com/?wc-api=olku_webhook_taramoney
+https://yourdomain.com/?wc-api=olkoo_webhook_taramoney
 ```
 
 #### Add Webhook to TaraMoney Dashboard
@@ -162,7 +162,7 @@ Click **Save changes** at the bottom of the page.
 For debugging and monitoring:
 
 1. Go to **WooCommerce → Settings → Payments**
-2. Scroll to **Olku Payment OS Settings**
+2. Scroll to **Olkoo Payment OS Settings**
 3. Check **Enable Logging**
 4. Set **Log Level** to desired level:
    - **Debug**: Most detailed (recommended for development)
@@ -174,7 +174,7 @@ For debugging and monitoring:
 
 Access logs at: **WooCommerce → Status → Logs**
 
-Look for logs with source: `olku-payment-os-taramoney`
+Look for logs with source: `olkoo-payment-os-taramoney`
 
 ## Troubleshooting Installation
 
@@ -184,7 +184,7 @@ Look for logs with source: `olku-payment-os-taramoney`
 
 **Solutions**:
 - Verify the plugin folder is in `/wp-content/plugins/`
-- Check folder name is exactly `olku-payment-os`
+- Check folder name is exactly `olkoo-payment-os`
 - Ensure all files were uploaded correctly
 - Check file permissions (755 for directories, 644 for files)
 
@@ -196,7 +196,7 @@ Look for logs with source: `olku-payment-os-taramoney`
 1. Install WooCommerce from **Plugins → Add New**
 2. Activate WooCommerce
 3. Complete WooCommerce setup wizard
-4. Retry activating Olku Payment OS
+4. Retry activating Olkoo Payment OS
 
 ### Gateway Not Showing at Checkout
 
@@ -276,9 +276,9 @@ After successful installation:
 
 If you encounter issues during installation:
 
-- **Documentation**: https://okenlysolutions.com/docs/olku-payment-os
+- **Documentation**: https://okenlysolutions.com/docs/olkoo-payment-os
 - **Support Email**: support@okenlysolutions.com
-- **GitHub Issues**: https://github.com/okenlysolutions/olku-payment-os/issues
+- **GitHub Issues**: https://github.com/okenlysolutions/olkoo-payment-os/issues
 
 ## Security Recommendations
 
@@ -293,4 +293,4 @@ After installation:
 
 ---
 
-**Installation complete! You're ready to accept payments with Olku Payment OS.**
+**Installation complete! You're ready to accept payments with Olkoo Payment OS.**

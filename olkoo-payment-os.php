@@ -1,48 +1,48 @@
 <?php
 /**
- * Plugin Name: Olku Payment OS
- * Plugin URI: https://okenlysolutions.com/olku-payment-os
+ * Plugin Name: Olkoo Payment OS
+ * Plugin URI: https://okenlysolutions.com/olkoo-payment-os
  * Description: Extensible payment gateway plugin for WooCommerce supporting TaraMoney and other payment providers
- * Version: 1.0.0
+ * Version: 1.2.0
  * Author: Okenly Solutions
  * Author URI: https://okenlysolutions.com
  * License: GPL v2 or later
  * License URI: https://www.gnu.org/licenses/gpl-2.0.html
- * Text Domain: olku-payment-os
+ * Text Domain: olkoo-payment-os
  * Domain Path: /languages
  * Requires at least: 5.8
  * Requires PHP: 7.4
  * WC requires at least: 5.0
  * WC tested up to: 8.5
  *
- * @package OlkuPaymentOS
+ * @package OlkooPaymentOS
  */
 
 defined('ABSPATH') || exit;
 
 // Define plugin constants
-define('OLKU_PAYMENT_OS_VERSION', '1.0.0');
-define('OLKU_PAYMENT_OS_PLUGIN_FILE', __FILE__);
-define('OLKU_PAYMENT_OS_PLUGIN_DIR', plugin_dir_path(__FILE__));
-define('OLKU_PAYMENT_OS_PLUGIN_URL', plugin_dir_url(__FILE__));
-define('OLKU_PAYMENT_OS_PLUGIN_BASENAME', plugin_basename(__FILE__));
+define('OLKOO_PAYMENT_OS_VERSION', '1.1.0');
+define('OLKOO_PAYMENT_OS_PLUGIN_FILE', __FILE__);
+define('OLKOO_PAYMENT_OS_PLUGIN_DIR', plugin_dir_path(__FILE__));
+define('OLKOO_PAYMENT_OS_PLUGIN_URL', plugin_dir_url(__FILE__));
+define('OLKOO_PAYMENT_OS_PLUGIN_BASENAME', plugin_basename(__FILE__));
 
 /**
  * Main plugin class
  */
-class Olku_Payment_OS {
+class Olkoo_Payment_OS {
     /**
      * The single instance of the class
      *
-     * @var Olku_Payment_OS
+     * @var Olkoo_Payment_OS
      */
     protected static $_instance = null;
 
     /**
-     * Main Olku Payment OS Instance
+     * Main Olkoo Payment OS Instance
      *
      * @static
-     * @return Olku_Payment_OS - Main instance
+     * @return Olkoo_Payment_OS - Main instance
      */
     public static function instance() {
         if (is_null(self::$_instance)) {
@@ -64,7 +64,7 @@ class Olku_Payment_OS {
     private function init_hooks() {
         add_action('plugins_loaded', array($this, 'init'), 0);
         add_filter('woocommerce_payment_gateways', array($this, 'add_gateways'));
-        add_filter('plugin_action_links_' . OLKU_PAYMENT_OS_PLUGIN_BASENAME, array($this, 'plugin_action_links'));
+        add_filter('plugin_action_links_' . OLKOO_PAYMENT_OS_PLUGIN_BASENAME, array($this, 'plugin_action_links'));
     }
 
     /**
@@ -78,7 +78,7 @@ class Olku_Payment_OS {
         }
 
         // Load plugin textdomain
-        load_plugin_textdomain('olku-payment-os', false, dirname(OLKU_PAYMENT_OS_PLUGIN_BASENAME) . '/languages');
+        load_plugin_textdomain('olkoo-payment-os', false, dirname(OLKOO_PAYMENT_OS_PLUGIN_BASENAME) . '/languages');
 
         // Include required files
         $this->includes();
@@ -88,36 +88,36 @@ class Olku_Payment_OS {
             $this->admin_includes();
         }
 
-        do_action('olku_payment_os_init');
+        do_action('olkoo_payment_os_init');
     }
 
     /**
      * Include required core files
      */
     private function includes() {
-        // Core abstracts and interfaces
-        require_once OLKU_PAYMENT_OS_PLUGIN_DIR . 'includes/abstracts/abstract-olku-payment-gateway.php';
-        require_once OLKU_PAYMENT_OS_PLUGIN_DIR . 'includes/interfaces/interface-olku-payment-gateway.php';
+        // Core abstracts and interfaces (interface must load before the abstract that implements it)
+        require_once OLKOO_PAYMENT_OS_PLUGIN_DIR . 'includes/interfaces/interface-olkoo-payment-gateway.php';
+        require_once OLKOO_PAYMENT_OS_PLUGIN_DIR . 'includes/abstracts/abstract-olkoo-payment-gateway.php';
 
         // Gateway factory
-        require_once OLKU_PAYMENT_OS_PLUGIN_DIR . 'includes/class-olku-payment-gateway-factory.php';
+        require_once OLKOO_PAYMENT_OS_PLUGIN_DIR . 'includes/class-olkoo-payment-gateway-factory.php';
 
         // Utilities
-        require_once OLKU_PAYMENT_OS_PLUGIN_DIR . 'includes/class-olku-payment-logger.php';
-        require_once OLKU_PAYMENT_OS_PLUGIN_DIR . 'includes/class-olku-payment-api-client.php';
+        require_once OLKOO_PAYMENT_OS_PLUGIN_DIR . 'includes/class-olkoo-payment-logger.php';
+        require_once OLKOO_PAYMENT_OS_PLUGIN_DIR . 'includes/class-olkoo-payment-api-client.php';
 
         // Gateway implementations
-        require_once OLKU_PAYMENT_OS_PLUGIN_DIR . 'includes/gateways/class-olku-gateway-taramoney.php';
+        require_once OLKOO_PAYMENT_OS_PLUGIN_DIR . 'includes/gateways/class-olkoo-gateway-taramoney.php';
 
         // Webhook handler
-        require_once OLKU_PAYMENT_OS_PLUGIN_DIR . 'includes/class-olku-payment-webhook-handler.php';
+        require_once OLKOO_PAYMENT_OS_PLUGIN_DIR . 'includes/class-olkoo-payment-webhook-handler.php';
     }
 
     /**
      * Include required admin files
      */
     private function admin_includes() {
-        require_once OLKU_PAYMENT_OS_PLUGIN_DIR . 'includes/admin/class-olku-payment-admin.php';
+        require_once OLKOO_PAYMENT_OS_PLUGIN_DIR . 'includes/admin/class-olkoo-payment-admin.php';
     }
 
     /**
@@ -127,11 +127,11 @@ class Olku_Payment_OS {
      * @return array
      */
     public function add_gateways($gateways) {
-        $olku_gateways = apply_filters('olku_payment_os_gateways', array(
-            'Olku_Gateway_TaraMoney',
+        $olkoo_gateways = apply_filters('olkoo_payment_os_gateways', array(
+            'Olkoo_Gateway_TaraMoney',
         ));
 
-        return array_merge($gateways, $olku_gateways);
+        return array_merge($gateways, $olkoo_gateways);
     }
 
     /**
@@ -153,7 +153,7 @@ class Olku_Payment_OS {
                 <?php
                 echo sprintf(
                     /* translators: %s: WooCommerce plugin link */
-                    esc_html__('Olku Payment OS requires WooCommerce to be installed and active. You can download %s here.', 'olku-payment-os'),
+                    esc_html__('Olkoo Payment OS requires WooCommerce to be installed and active. You can download %s here.', 'olkoo-payment-os'),
                     '<a href="https://wordpress.org/plugins/woocommerce/" target="_blank">WooCommerce</a>'
                 );
                 ?>
@@ -170,8 +170,8 @@ class Olku_Payment_OS {
      */
     public function plugin_action_links($links) {
         $action_links = array(
-            'settings' => '<a href="' . admin_url('admin.php?page=wc-settings&tab=checkout') . '">' . __('Settings', 'olku-payment-os') . '</a>',
-            'docs' => '<a href="https://okenlysolutions.com/docs/olku-payment-os" target="_blank">' . __('Documentation', 'olku-payment-os') . '</a>',
+            'settings' => '<a href="' . admin_url('admin.php?page=wc-settings&tab=checkout') . '">' . __('Settings', 'olkoo-payment-os') . '</a>',
+            'docs' => '<a href="https://okenlysolutions.com/docs/olkoo-payment-os" target="_blank">' . __('Documentation', 'olkoo-payment-os') . '</a>',
         );
 
         return array_merge($action_links, $links);
@@ -183,7 +183,7 @@ class Olku_Payment_OS {
      * @return string
      */
     public function plugin_url() {
-        return OLKU_PAYMENT_OS_PLUGIN_URL;
+        return OLKOO_PAYMENT_OS_PLUGIN_URL;
     }
 
     /**
@@ -192,18 +192,18 @@ class Olku_Payment_OS {
      * @return string
      */
     public function plugin_path() {
-        return OLKU_PAYMENT_OS_PLUGIN_DIR;
+        return OLKOO_PAYMENT_OS_PLUGIN_DIR;
     }
 }
 
 /**
- * Main instance of Olku Payment OS
+ * Main instance of Olkoo Payment OS
  *
- * @return Olku_Payment_OS
+ * @return Olkoo_Payment_OS
  */
-function Olku_Payment_OS() {
-    return Olku_Payment_OS::instance();
+function Olkoo_Payment_OS() {
+    return Olkoo_Payment_OS::instance();
 }
 
 // Initialize the plugin
-Olku_Payment_OS();
+Olkoo_Payment_OS();

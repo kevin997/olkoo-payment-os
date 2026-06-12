@@ -1,14 +1,70 @@
 # Changelog
 
-All notable changes to Olku Payment OS will be documented in this file.
+All notable changes to Olkoo Payment OS will be documented in this file.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.2.0] - 2026-06-11
+
+### Changed
+- **Breaking**: Rebranded plugin from Olku Payment OS to Olkoo Payment OS
+  - All class names, constants, hooks, file names, and the text domain renamed from `olku` to `olkoo`
+  - Main plugin file renamed to `olkoo-payment-os.php` (deactivate/reactivate required after update)
+- TaraMoney checkout now redirects to the unified payment page (`generalLink`) when available, falling back to card, Dikalo, WhatsApp, Telegram, then SMS links
+
+### Added
+- TaraMoney `generalLink` and `cardLink` response handling, stored as order meta
+- Webhook authentication via shared-secret token query parameter (TaraMoney does not sign webhook payloads)
+- Order ID passed back on the webhook URL so card payment webhooks (which carry no `productId`) resolve to the correct order
+- Bundled TaraMoney logo (`assets/images/taramoney-logo.jpg`) used as the gateway checkout icon
+
+### Fixed
+- Fatal load-order bug: the gateway interface is now required before the abstract class that implements it
+
+## [1.1.0] - 2025-01-20
+
+### Changed
+- **Breaking**: Updated TaraMoney integration to use new Payment Links API
+  - API endpoint changed from `/api/tara/order` to `/api/tara/paymentlinks`
+  - Response status now uses lowercase `"success"` instead of uppercase
+- Deprecated direct mobile money endpoint (`/api/tara/cmmobile`)
+  - Mobile Money payments now handled via Tara's unified payment interface
+  - Direct mobile money method falls back to payment links
+- Updated admin form fields
+  - Removed deprecated "Enable Mobile Money" option
+  - Renamed "Enable Order Links" to "Enable Payment Links"
+  - Added "Supported Payment Methods" info section
+
+### Added
+- Card payment webhook support
+  - Automatic detection of card vs mobile money webhooks
+  - Separate handling for card payment success/failure
+- Enhanced webhook payload handling
+  - Support for new collects (mobile money) webhook format
+  - Support for card payment webhook format
+  - Detailed transaction metadata storage
+- New order meta fields for payment tracking
+  - `_taramoney_collection_id`: Collection identifier
+  - `_taramoney_webhook_type`: 'collects' or 'card'
+  - `_taramoney_mobile_operator`: Mobile network operator
+  - `_taramoney_transaction_type`: DEPOSIT or TRANSFER
+  - `_taramoney_creation_date`: Transaction creation timestamp
+  - `_taramoney_change_date`: Last status change timestamp
+
+### Fixed
+- Success response validation now handles both old and new API response formats
+- Improved webhook type detection for better payment categorization
+
+### Documentation
+- Updated README with new API endpoints
+- Added webhook payload examples for both payment types
+- Documented breaking changes and migration notes
+
 ## [1.0.0] - 2025-01-17
 
 ### Added
-- Initial release of Olku Payment OS
+- Initial release of Olkoo Payment OS
 - Extensible payment gateway framework for WooCommerce
 - Abstract base class for payment gateway implementations
 - Payment gateway interface defining standard methods
@@ -82,4 +138,5 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ---
 
-[1.0.0]: https://github.com/okenlysolutions/olku-payment-os/releases/tag/v1.0.0
+[1.1.0]: https://github.com/okenlysolutions/olkoo-payment-os/releases/tag/v1.1.0
+[1.0.0]: https://github.com/okenlysolutions/olkoo-payment-os/releases/tag/v1.0.0

@@ -4,16 +4,16 @@
  *
  * Handles HTTP requests to payment gateway APIs
  *
- * @package OlkuPaymentOS
+ * @package OlkooPaymentOS
  * @since 1.0.0
  */
 
 defined('ABSPATH') || exit;
 
 /**
- * Class Olku_Payment_API_Client
+ * Class Olkoo_Payment_API_Client
  */
-class Olku_Payment_API_Client {
+class Olkoo_Payment_API_Client {
     /**
      * Base API URL
      *
@@ -31,7 +31,7 @@ class Olku_Payment_API_Client {
     /**
      * Logger instance
      *
-     * @var Olku_Payment_Logger
+     * @var Olkoo_Payment_Logger
      */
     private $logger;
 
@@ -47,7 +47,7 @@ class Olku_Payment_API_Client {
      *
      * @param string $base_url Base API URL
      * @param array $headers HTTP headers
-     * @param Olku_Payment_Logger|null $logger Logger instance
+     * @param Olkoo_Payment_Logger|null $logger Logger instance
      * @param int $timeout Request timeout in seconds
      */
     public function __construct($base_url, $headers = array(), $logger = null, $timeout = 30) {

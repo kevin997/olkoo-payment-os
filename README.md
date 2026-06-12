@@ -1,8 +1,8 @@
-# Olku Payment OS
+# Olkoo Payment OS
 
 **Extensible WooCommerce payment gateway plugin supporting TaraMoney and other payment providers**
 
-[![Version](https://img.shields.io/badge/version-1.0.0-blue.svg)](https://github.com/Okenly-Solutions/olku-payment-os)
+[![Version](https://img.shields.io/badge/version-1.0.0-blue.svg)](https://github.com/Okenly-Solutions/olkoo-payment-os)
 [![WordPress](https://img.shields.io/badge/wordpress-5.8+-green.svg)](https://wordpress.org/)
 [![WooCommerce](https://img.shields.io/badge/woocommerce-5.0+-purple.svg)](https://woocommerce.com/)
 [![License](https://img.shields.io/badge/license-GPL--2.0-red.svg)](LICENSE)
@@ -31,7 +31,7 @@ If you find this plugin useful, consider buying me a coffee! Your support helps 
 
 ## Overview
 
-Olku Payment OS is a robust, extensible payment gateway plugin for WooCommerce that provides a unified framework for integrating multiple payment providers. The plugin features a clean architecture with abstract classes and interfaces, making it easy to add support for new payment gateways.
+Olkoo Payment OS is a robust, extensible payment gateway plugin for WooCommerce that provides a unified framework for integrating multiple payment providers. The plugin features a clean architecture with abstract classes and interfaces, making it easy to add support for new payment gateways.
 
 ### Key Features
 
@@ -65,7 +65,7 @@ Olku Payment OS is a robust, extensible payment gateway plugin for WooCommerce t
 
 ```bash
 cd /path/to/wordpress/wp-content/plugins/
-git clone https://github.com/Okenly-Solutions/olku-payment-os.git
+git clone https://github.com/Okenly-Solutions/olkoo-payment-os.git
 ```
 
 Then activate the plugin in WordPress admin.
@@ -96,7 +96,7 @@ Get your API credentials from [TaraMoney Dashboard](https://www.dklo.co/dashboar
 Copy the webhook URL displayed in the settings and add it to your TaraMoney dashboard:
 
 ```
-https://yourdomain.com/?wc-api=olku_webhook_taramoney
+https://yourdomain.com/?wc-api=olkoo_webhook_taramoney
 ```
 
 **Important**: Webhooks require HTTPS in production.
@@ -119,16 +119,16 @@ Once configured, TaraMoney will appear as a payment option during checkout. Cust
 
 #### Adding a New Payment Gateway
 
-1. Create a new gateway class extending `Abstract_Olku_Payment_Gateway`:
+1. Create a new gateway class extending `Abstract_Olkoo_Payment_Gateway`:
 
 ```php
 <?php
-class Olku_Gateway_YourGateway extends Abstract_Olku_Payment_Gateway {
+class Olkoo_Gateway_YourGateway extends Abstract_Olkoo_Payment_Gateway {
 
     public function __construct() {
         $this->id = 'your_gateway';
-        $this->method_title = __('Your Gateway', 'olku-payment-os');
-        $this->method_description = __('Description here', 'olku-payment-os');
+        $this->method_title = __('Your Gateway', 'olkoo-payment-os');
+        $this->method_description = __('Description here', 'olkoo-payment-os');
 
         parent::__construct();
     }
@@ -136,7 +136,7 @@ class Olku_Gateway_YourGateway extends Abstract_Olku_Payment_Gateway {
     protected function get_gateway_form_fields() {
         return array(
             'api_key' => array(
-                'title' => __('API Key', 'olku-payment-os'),
+                'title' => __('API Key', 'olkoo-payment-os'),
                 'type' => 'text',
                 'default' => '',
             ),
@@ -157,14 +157,14 @@ class Olku_Gateway_YourGateway extends Abstract_Olku_Payment_Gateway {
 2. Register the gateway in the factory:
 
 ```php
-Olku_Payment_Gateway_Factory::register_gateway('your_gateway', 'Olku_Gateway_YourGateway');
+Olkoo_Payment_Gateway_Factory::register_gateway('your_gateway', 'Olkoo_Gateway_YourGateway');
 ```
 
 3. Add the gateway to the plugin's gateway list:
 
 ```php
-add_filter('olku_payment_os_gateways', function($gateways) {
-    $gateways[] = 'Olku_Gateway_YourGateway';
+add_filter('olkoo_payment_os_gateways', function($gateways) {
+    $gateways[] = 'Olkoo_Gateway_YourGateway';
     return $gateways;
 });
 ```
@@ -174,7 +174,7 @@ add_filter('olku_payment_os_gateways', function($gateways) {
 The plugin includes a built-in HTTP client for API requests:
 
 ```php
-$api_client = new Olku_Payment_API_Client(
+$api_client = new Olkoo_Payment_API_Client(
     'https://api.example.com',
     array('Authorization' => 'Bearer ' . $api_key),
     $logger
@@ -214,20 +214,20 @@ View logs in **WooCommerce → Status → Logs**.
 ### Plugin Structure
 
 ```
-olku-payment-os/
+olkoo-payment-os/
 ├── includes/
 │   ├── abstracts/
-│   │   └── abstract-olku-payment-gateway.php
+│   │   └── abstract-olkoo-payment-gateway.php
 │   ├── interfaces/
-│   │   └── interface-olku-payment-gateway.php
+│   │   └── interface-olkoo-payment-gateway.php
 │   ├── gateways/
-│   │   └── class-olku-gateway-taramoney.php
+│   │   └── class-olkoo-gateway-taramoney.php
 │   ├── admin/
-│   │   └── class-olku-payment-admin.php
-│   ├── class-olku-payment-logger.php
-│   ├── class-olku-payment-api-client.php
-│   ├── class-olku-payment-gateway-factory.php
-│   └── class-olku-payment-webhook-handler.php
+│   │   └── class-olkoo-payment-admin.php
+│   ├── class-olkoo-payment-logger.php
+│   ├── class-olkoo-payment-api-client.php
+│   ├── class-olkoo-payment-gateway-factory.php
+│   └── class-olkoo-payment-webhook-handler.php
 ├── assets/
 │   ├── css/
 │   ├── js/
@@ -235,7 +235,7 @@ olku-payment-os/
 ├── languages/
 ├── README.md
 ├── LICENSE
-└── olku-payment-os.php
+└── olkoo-payment-os.php
 ```
 
 ### Design Patterns
@@ -249,26 +249,66 @@ olku-payment-os/
 
 ### Supported Features
 
-#### Order Link Payments
+#### Payment Links (v1.1.0+)
 - WhatsApp payment links
 - Telegram payment links
 - SMS payment links
 - Dikalo web payment
 
-#### Mobile Money Payments
+#### Webhook-Based Payments
+Mobile Money and Card payments are now handled via Tara's unified payment interface:
+
+**Mobile Money (Collects):**
 - Orange Money (Cameroon)
 - MTN Mobile Money (Cameroon)
-- USSD code generation
+- Automatic payment confirmation via webhooks
+
+**Card Payments:**
+- Visa/Mastercard support
+- Automatic payment confirmation via webhooks
 
 #### Webhook Events
-- Payment success notifications
-- Payment failure notifications
-- Transaction status updates
+- Payment success notifications (SUCCESS)
+- Payment failure notifications (FAILURE)
+- Support for both DEPOSIT and TRANSFER transaction types
+- Detailed transaction metadata storage
 
 ### API Endpoints Used
 
-- `POST /api/tara/order` - Create order payment links
-- `POST /api/tara/cmmobile` - Initiate mobile money payment
+- `POST /api/tara/paymentlinks` - Generate payment links (WhatsApp, Telegram, SMS, Dikalo)
+
+### Webhook Payloads
+
+**Mobile Money (Collects) Webhook:**
+```json
+{
+  "businessId": "your_business_id",
+  "paymentId": "payment_id",
+  "amount": "100",
+  "mobileOperator": "ORANGE_CAMEROON",
+  "customerName": "",
+  "collectionId": "collection_id",
+  "transactionCode": "transaction_code",
+  "customerId": "",
+  "phoneNumber": "6XXXXXXXX",
+  "creationDate": "2025-01-20T14:13:53.888+02:00",
+  "changeDate": "2025-01-20T14:13:53.088+02:00",
+  "type": "DEPOSIT",
+  "status": "SUCCESS"
+}
+```
+
+**Card Payment Webhook:**
+```json
+{
+  "businessId": "your_business_id",
+  "status": "SUCCESS",
+  "paymentId": "payment_id",
+  "collectionId": "collection_id",
+  "creationDate": "2025-01-20T14:13:53.888+02:00",
+  "changeDate": "2025-01-20T14:13:53.088+02:00"
+}
+```
 
 ### Currency Support
 
@@ -306,7 +346,7 @@ TaraMoney primarily works with XAF (Central African CFA Franc). The plugin autom
 Enable debug logging:
 
 1. Go to **WooCommerce → Settings → Payments**
-2. Scroll to **Olku Payment OS Settings**
+2. Scroll to **Olkoo Payment OS Settings**
 3. Enable **Enable Logging**
 4. Set **Log Level** to **Debug**
 
@@ -329,14 +369,24 @@ See [EXTENDING.md](docs/EXTENDING.md) for detailed examples of creating custom p
 ### Hooks and Filters
 
 **Actions:**
-- `olku_payment_os_init` - Fires after plugin initialization
-- `olku_payment_os_register_webhooks` - Register custom webhook handlers
+- `olkoo_payment_os_init` - Fires after plugin initialization
+- `olkoo_payment_os_register_webhooks` - Register custom webhook handlers
 
 **Filters:**
-- `olku_payment_os_gateways` - Modify registered gateway classes
-- `olku_taramoney_icon` - Customize TaraMoney gateway icon
+- `olkoo_payment_os_gateways` - Modify registered gateway classes
+- `olkoo_taramoney_icon` - Customize TaraMoney gateway icon
 
 ## Changelog
+
+### 1.1.0 - 2025-01-20
+
+- **Breaking Change**: Updated to new TaraMoney Payment Links API (`/api/tara/paymentlinks`)
+- Deprecated direct mobile money endpoint (`/api/tara/cmmobile`)
+- Added support for card payment webhooks
+- Enhanced webhook handling for both Mobile Money (collects) and Card payments
+- Improved order metadata storage for payment tracking
+- Updated form fields and admin settings
+- Added detailed webhook payload documentation
 
 ### 1.0.0 - 2025-01-17
 
@@ -350,8 +400,8 @@ See [EXTENDING.md](docs/EXTENDING.md) for detailed examples of creating custom p
 
 ## Support
 
-- **Documentation**: [https://github.com/Okenly-Solutions/olku-payment-os](https://github.com/Okenly-Solutions/olku-payment-os)
-- **Issues**: [GitHub Issues](https://github.com/Okenly-Solutions/olku-payment-os/issues)
+- **Documentation**: [https://github.com/Okenly-Solutions/olkoo-payment-os](https://github.com/Okenly-Solutions/olkoo-payment-os)
+- **Issues**: [GitHub Issues](https://github.com/Okenly-Solutions/olkoo-payment-os/issues)
 - **Email**: support@okenlysolutions.com
 
 ## Contributing

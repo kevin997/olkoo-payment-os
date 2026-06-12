@@ -2,19 +2,19 @@
 /**
  * Abstract Payment Gateway Class
  *
- * Extends WC_Payment_Gateway and implements Olku_Payment_Gateway_Interface
+ * Extends WC_Payment_Gateway and implements Olkoo_Payment_Gateway_Interface
  * Provides common functionality for all gateway implementations
  *
- * @package OlkuPaymentOS
+ * @package OlkooPaymentOS
  * @since 1.0.0
  */
 
 defined('ABSPATH') || exit;
 
 /**
- * Abstract class Abstract_Olku_Payment_Gateway
+ * Abstract class Abstract_Olkoo_Payment_Gateway
  */
-abstract class Abstract_Olku_Payment_Gateway extends WC_Payment_Gateway implements Olku_Payment_Gateway_Interface {
+abstract class Abstract_Olkoo_Payment_Gateway extends WC_Payment_Gateway implements Olkoo_Payment_Gateway_Interface {
     /**
      * Gateway test mode
      *
@@ -46,14 +46,14 @@ abstract class Abstract_Olku_Payment_Gateway extends WC_Payment_Gateway implemen
     /**
      * Logger instance
      *
-     * @var Olku_Payment_Logger
+     * @var Olkoo_Payment_Logger
      */
     protected $logger;
 
     /**
      * API client instance
      *
-     * @var Olku_Payment_API_Client
+     * @var Olkoo_Payment_API_Client
      */
     protected $api_client;
 
@@ -72,7 +72,7 @@ abstract class Abstract_Olku_Payment_Gateway extends WC_Payment_Gateway implemen
         $this->test_mode = 'yes' === $this->get_option('test_mode', 'no');
 
         // Initialize logger
-        $this->logger = new Olku_Payment_Logger($this->id);
+        $this->logger = new Olkoo_Payment_Logger($this->id);
 
         // Hooks
         add_action('woocommerce_update_options_payment_gateways_' . $this->id, array($this, 'process_admin_options'));
@@ -85,30 +85,30 @@ abstract class Abstract_Olku_Payment_Gateway extends WC_Payment_Gateway implemen
     public function init_form_fields() {
         $this->form_fields = array(
             'enabled' => array(
-                'title' => __('Enable/Disable', 'olku-payment-os'),
+                'title' => __('Enable/Disable', 'olkoo-payment-os'),
                 'type' => 'checkbox',
-                'label' => __('Enable this payment gateway', 'olku-payment-os'),
+                'label' => __('Enable this payment gateway', 'olkoo-payment-os'),
                 'default' => 'no',
             ),
             'title' => array(
-                'title' => __('Title', 'olku-payment-os'),
+                'title' => __('Title', 'olkoo-payment-os'),
                 'type' => 'text',
-                'description' => __('Payment method title that users see during checkout', 'olku-payment-os'),
+                'description' => __('Payment method title that users see during checkout', 'olkoo-payment-os'),
                 'default' => $this->method_title,
                 'desc_tip' => true,
             ),
             'description' => array(
-                'title' => __('Description', 'olku-payment-os'),
+                'title' => __('Description', 'olkoo-payment-os'),
                 'type' => 'textarea',
-                'description' => __('Payment method description that users see during checkout', 'olku-payment-os'),
+                'description' => __('Payment method description that users see during checkout', 'olkoo-payment-os'),
                 'default' => $this->method_description,
                 'desc_tip' => true,
             ),
             'test_mode' => array(
-                'title' => __('Test Mode', 'olku-payment-os'),
+                'title' => __('Test Mode', 'olkoo-payment-os'),
                 'type' => 'checkbox',
-                'label' => __('Enable test mode', 'olku-payment-os'),
-                'description' => __('Use test API credentials for testing', 'olku-payment-os'),
+                'label' => __('Enable test mode', 'olkoo-payment-os'),
+                'description' => __('Use test API credentials for testing', 'olkoo-payment-os'),
                 'default' => 'yes',
                 'desc_tip' => true,
             ),
@@ -206,7 +206,7 @@ abstract class Abstract_Olku_Payment_Gateway extends WC_Payment_Gateway implemen
         // Default implementation - should be overridden by child classes
         return array(
             'success' => false,
-            'message' => __('Payment verification not implemented', 'olku-payment-os'),
+            'message' => __('Payment verification not implemented', 'olkoo-payment-os'),
         );
     }
 
@@ -222,7 +222,7 @@ abstract class Abstract_Olku_Payment_Gateway extends WC_Payment_Gateway implemen
         $order = wc_get_order($order_id);
 
         if (!$order) {
-            return new WP_Error('invalid_order', __('Invalid order ID', 'olku-payment-os'));
+            return new WP_Error('invalid_order', __('Invalid order ID', 'olkoo-payment-os'));
         }
 
         $this->logger->info('Processing refund', array(
@@ -232,7 +232,7 @@ abstract class Abstract_Olku_Payment_Gateway extends WC_Payment_Gateway implemen
         ));
 
         // Default implementation - refunds not supported
-        return new WP_Error('refund_not_supported', __('Refunds are not supported by this gateway', 'olku-payment-os'));
+        return new WP_Error('refund_not_supported', __('Refunds are not supported by this gateway', 'olkoo-payment-os'));
     }
 
     /**

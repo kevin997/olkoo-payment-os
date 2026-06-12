@@ -4,16 +4,16 @@
  *
  * Factory class for creating payment gateway instances
  *
- * @package OlkuPaymentOS
+ * @package OlkooPaymentOS
  * @since 1.0.0
  */
 
 defined('ABSPATH') || exit;
 
 /**
- * Class Olku_Payment_Gateway_Factory
+ * Class Olkoo_Payment_Gateway_Factory
  */
-class Olku_Payment_Gateway_Factory {
+class Olkoo_Payment_Gateway_Factory {
     /**
      * Registered gateway classes
      *
@@ -37,7 +37,7 @@ class Olku_Payment_Gateway_Factory {
      * Create gateway instance
      *
      * @param string $gateway_id Gateway identifier
-     * @return Abstract_Olku_Payment_Gateway|null Gateway instance or null if not found
+     * @return Abstract_Olkoo_Payment_Gateway|null Gateway instance or null if not found
      */
     public static function create_gateway($gateway_id) {
         if (!isset(self::$gateways[$gateway_id])) {
@@ -85,4 +85,4 @@ class Olku_Payment_Gateway_Factory {
 }
 
 // Register default gateways
-Olku_Payment_Gateway_Factory::register_gateway('taramoney', 'Olku_Gateway_TaraMoney');
+Olkoo_Payment_Gateway_Factory::register_gateway('taramoney', 'Olkoo_Gateway_TaraMoney');

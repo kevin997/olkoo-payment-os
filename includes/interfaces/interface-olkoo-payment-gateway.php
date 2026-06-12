@@ -4,16 +4,16 @@
  *
  * Defines the contract that all payment gateway implementations must follow
  *
- * @package OlkuPaymentOS
+ * @package OlkooPaymentOS
  * @since 1.0.0
  */
 
 defined('ABSPATH') || exit;
 
 /**
- * Interface Olku_Payment_Gateway_Interface
+ * Interface Olkoo_Payment_Gateway_Interface
  */
-interface Olku_Payment_Gateway_Interface {
+interface Olkoo_Payment_Gateway_Interface {
     /**
      * Process the payment
      *

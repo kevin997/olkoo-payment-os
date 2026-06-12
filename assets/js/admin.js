@@ -1,7 +1,7 @@
 /**
- * Admin JavaScript for Olku Payment OS
+ * Admin JavaScript for Olkoo Payment OS
  *
- * @package OlkuPaymentOS
+ * @package OlkooPaymentOS
  * @since 1.0.0
  */
 
@@ -10,7 +10,7 @@
 
     $(document).ready(function() {
         // Copy webhook URL to clipboard
-        $('.olku-copy-webhook-url').on('click', function(e) {
+        $('.olkoo-copy-webhook-url').on('click', function(e) {
             e.preventDefault();
 
             var $button = $(this);

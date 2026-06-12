@@ -1,6 +1,6 @@
-# Release Process for Olku Payment OS
+# Release Process for Olkoo Payment OS
 
-This document describes how to create and distribute releases of the Olku Payment OS plugin.
+This document describes how to create and distribute releases of the Olkoo Payment OS plugin.
 
 ## Prerequisites
 
@@ -21,7 +21,7 @@ chmod +x build.sh
 ./build.sh 1.0.0
 ```
 
-This will create: `releases/olku-payment-os-1.0.0.zip`
+This will create: `releases/olkoo-payment-os-1.0.0.zip`
 
 ### Method 2: Manual ZIP Creation
 
@@ -31,7 +31,7 @@ mkdir -p releases
 
 # Create ZIP (from parent directory)
 cd ..
-zip -r olku-payment-os/releases/olku-payment-os-1.0.0.zip olku-payment-os \
+zip -r olkoo-payment-os/releases/olkoo-payment-os-1.0.0.zip olkoo-payment-os \
   -x "*/build/*" \
   -x "*/releases/*" \
   -x "*/.git/*" \
@@ -45,7 +45,7 @@ zip -r olku-payment-os/releases/olku-payment-os-1.0.0.zip olku-payment-os \
 ## What Gets Included
 
 ### Included Files
-- ✅ `olku-payment-os.php` (main plugin file)
+- ✅ `olkoo-payment-os.php` (main plugin file)
 - ✅ `includes/` (all PHP classes)
 - ✅ `assets/` (CSS, JS, images)
 - ✅ `README.md`
@@ -73,7 +73,7 @@ Upload the ZIP file to your website:
 
 ```bash
 # Upload to your server
-scp releases/olku-payment-os-1.0.0.zip user@server:/path/to/downloads/
+scp releases/olkoo-payment-os-1.0.0.zip user@server:/path/to/downloads/
 ```
 
 Users can download and install via WordPress admin.
@@ -90,9 +90,9 @@ git push origin v1.0.0
 # Create release on GitHub
 # 1. Go to repository → Releases → New Release
 # 2. Select tag: v1.0.0
-# 3. Title: Olku Payment OS v1.0.0
+# 3. Title: Olkoo Payment OS v1.0.0
 # 4. Description: Copy from CHANGELOG.md
-# 5. Attach: releases/olku-payment-os-1.0.0.zip
+# 5. Attach: releases/olkoo-payment-os-1.0.0.zip
 # 6. Publish release
 ```
 
@@ -111,14 +111,14 @@ To submit to WordPress.org:
 
 Before building, update version in these files:
 
-1. **olku-payment-os.php** (header)
+1. **olkoo-payment-os.php** (header)
    ```php
    * Version: 1.0.0
    ```
 
-2. **olku-payment-os.php** (constant)
+2. **olkoo-payment-os.php** (constant)
    ```php
-   define('OLKU_PAYMENT_OS_VERSION', '1.0.0');
+   define('OLKOO_PAYMENT_OS_VERSION', '1.0.0');
    ```
 
 3. **CHANGELOG.md**
@@ -150,14 +150,14 @@ Examples:
 
 ### Title
 ```
-Olku Payment OS v1.0.0
+Olkoo Payment OS v1.0.0
 ```
 
 ### Description Template
 ```markdown
-# Olku Payment OS v1.0.0
+# Olkoo Payment OS v1.0.0
 
-🎉 Initial release of Olku Payment OS - Extensible WooCommerce payment gateway plugin!
+🎉 Initial release of Olkoo Payment OS - Extensible WooCommerce payment gateway plugin!
 
 ## ✨ Features
 
@@ -172,7 +172,7 @@ Olku Payment OS v1.0.0
 
 ## 📦 Installation
 
-1. Download `olku-payment-os-1.0.0.zip`
+1. Download `olkoo-payment-os-1.0.0.zip`
 2. Go to WordPress Admin → Plugins → Add New → Upload Plugin
 3. Upload the ZIP file
 4. Activate the plugin
@@ -194,7 +194,7 @@ Olku Payment OS v1.0.0
 
 ## 🐛 Bug Reports
 
-Found a bug? [Open an issue](https://github.com/okenlysolutions/olku-payment-os/issues)
+Found a bug? [Open an issue](https://github.com/okenlysolutions/olkoo-payment-os/issues)
 
 ## 📝 Changelog
 
@@ -202,7 +202,7 @@ See [CHANGELOG.md](CHANGELOG.md) for full details.
 
 ---
 
-**Full Changelog**: https://github.com/okenlysolutions/olku-payment-os/commits/v1.0.0
+**Full Changelog**: https://github.com/okenlysolutions/olkoo-payment-os/commits/v1.0.0
 ```
 
 ## Automated Release with GitHub Actions (Optional)
@@ -244,7 +244,7 @@ Before distributing:
 
 1. **Extract and Verify**
    ```bash
-   unzip -l releases/olku-payment-os-1.0.0.zip
+   unzip -l releases/olkoo-payment-os-1.0.0.zip
    ```
 
 2. **Test Installation**
