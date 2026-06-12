@@ -3,7 +3,7 @@
  * Plugin Name: Olkoo Payment OS
  * Plugin URI: https://okenlysolutions.com/olkoo-payment-os
  * Description: Extensible payment gateway plugin for WooCommerce supporting TaraMoney and other payment providers
- * Version: 1.2.0
+ * Version: 1.2.1
  * Author: Okenly Solutions
  * Author URI: https://okenlysolutions.com
  * License: GPL v2 or later
@@ -21,7 +21,7 @@
 defined('ABSPATH') || exit;
 
 // Define plugin constants
-define('OLKOO_PAYMENT_OS_VERSION', '1.2.0');
+define('OLKOO_PAYMENT_OS_VERSION', '1.2.1');
 define('OLKOO_PAYMENT_OS_PLUGIN_FILE', __FILE__);
 define('OLKOO_PAYMENT_OS_PLUGIN_DIR', plugin_dir_path(__FILE__));
 define('OLKOO_PAYMENT_OS_PLUGIN_URL', plugin_dir_url(__FILE__));
@@ -66,6 +66,7 @@ class Olkoo_Payment_OS {
      */
     private function init_hooks() {
         add_action('plugins_loaded', array($this, 'init'), 0);
+        add_action('woocommerce_blocks_loaded', array($this, 'blocks_includes'));
         add_filter('woocommerce_payment_gateways', array($this, 'add_gateways'));
         add_filter('plugin_action_links_' . OLKOO_PAYMENT_OS_PLUGIN_BASENAME, array($this, 'plugin_action_links'));
     }
@@ -114,6 +115,13 @@ class Olkoo_Payment_OS {
 
         // Webhook handler
         require_once OLKOO_PAYMENT_OS_PLUGIN_DIR . 'includes/class-olkoo-payment-webhook-handler.php';
+    }
+
+    /**
+     * Include WooCommerce Blocks integrations.
+     */
+    public function blocks_includes() {
+        require_once OLKOO_PAYMENT_OS_PLUGIN_DIR . 'includes/blocks/class-olkoo-taramoney-blocks-payment-method.php';
     }
 
     /**

@@ -2,7 +2,7 @@
 
 **Extensible WooCommerce payment gateway plugin supporting TaraMoney and other payment providers**
 
-[![Version](https://img.shields.io/badge/version-1.2.0-blue.svg)](https://github.com/Okenly-Solutions/olkoo-payment-os)
+[![Version](https://img.shields.io/badge/version-1.2.1-blue.svg)](https://github.com/Okenly-Solutions/olkoo-payment-os)
 [![WordPress](https://img.shields.io/badge/wordpress-5.8+-green.svg)](https://wordpress.org/)
 [![WooCommerce](https://img.shields.io/badge/woocommerce-5.0+-purple.svg)](https://woocommerce.com/)
 [![License](https://img.shields.io/badge/license-GPL--2.0-red.svg)](LICENSE)
