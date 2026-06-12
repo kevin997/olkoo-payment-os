@@ -23,6 +23,22 @@ chmod +x build.sh
 
 This will create: `releases/olkoo-payment-os-1.0.0.zip`
 
+## Agent Release Workflow
+
+Repository automation agents must follow the canonical workflow in `AGENTS.md`.
+
+Critical requirements:
+
+- Update source files first; never patch `build/` manually.
+- Update `CHANGELOG.md`.
+- Run PHP lint.
+- Build with `./build.sh <version>`.
+- Verify the ZIP contents and SHA-256 digest.
+- Commit and push `main`.
+- Create and close a GitHub issue for the change.
+- Tag the release commit and upload `releases/olkoo-payment-os-<version>.zip` to the GitHub release.
+- Use a higher semantic version for any update that should appear in WordPress admin. Replacing a same-version ZIP does not trigger WordPress updates.
+
 ### Method 2: Manual ZIP Creation
 
 ```bash
